@@ -1,10 +1,16 @@
 const express = require("express");
+const Joi = require("@hapi/joi");
+// custome middleware
+const logger = require("./logger");
+const authentication = require("./authentication");
 // port
 const PORT = process.env.PORT || 3000;
-const Joi = require("@hapi/joi");
 
 const app = express();
 app.use(express.json());
+// custom middleware
+app.use(logger);
+app.use(authentication);
 
 // Placeholders
 const courses = [
